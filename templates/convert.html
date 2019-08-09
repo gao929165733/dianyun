@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转换页面</title>
+</head>
+<body>
+
+
+<form action="/convert" method="post">
+
+    <p>This is convert page</p>
+    <p>文件路径: {{ result }}</p>
+
+    <input type="submit" name="submit_button" value="view" />
+    <input type="submit" name="submit_button" value="dataDownload" />
+    <input type="submit" name="submit_button" value="deletePro" />
+
+</form>
+
+    <br />
+    <br />
+    <div>
+        <a href="{{ url_for('index') }}"><button>主页</button></a>
+    </div>
+
+
+</body>
+</html>

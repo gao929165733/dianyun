@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点云浏览</title>
+</head>
+<body>
+<!--浏览-->
+<form action="{{ url_for('select_prj') }}" method="post" autocomplete="off" onsubmit="return check(this)">
+    <input type="text" name="project"/>
+    <input type="submit" value="选择浏览目录"/>
+    <input type="reset" value="重置目录"/>
+</form>
+
+
+<!--创建目录-->
+<form action='/create_prj' method="post" autocomplete="off" onsubmit="return check(this)">
+    <input type="text" name="project"/>
+    <input type="submit" value="创建目录"/>
+    <input type="reset" value="重置目录"/>
+</form>
+<!--删除目录-->
+<form action='/delete_pri' method="post" autocomplete="off" onsubmit="return check(this)">
+    <input type="text" name="project"/>
+    <input type="submit" value="删除目录"/>
+</form>
+
+<!--文件上传-->
+<div style="float:left;">
+    <form action='/file_upload' method="post" enctype="multipart/form-data">
+        <input type="file" name="myFile"/>
+            <br />
+        <input type="submit" value="文件上传转化"/>
+    </form>
+</div>
+<!--TXTcrossfile-->
+<div style="float:left">
+    <form action='/TXTcrossfile' method="post" enctype="multipart/form-data">
+    <input type="file" name="cross-uploadTXT"/>
+        <br />
+    <input type="submit" value="TXTcrossfile"/>
+</form>
+
+<!--uploadDangerTXT-->
+<div style="float:left">
+    <form action='/uploadDangerTXT' method="post" enctype="multipart/form-data">
+    <input type="file" name="danger-uploadTXT"/>
+        <br />
+    <input type="submit" value="uploadDangerTXT"/>
+</form>
+
+</div>
+
+<!--uploadTowerTXT-->
+<div style="float:left">
+    <form action='/uploadTowerTXT' method="post" enctype="multipart/form-data">
+    <input type="file" name="tower-uploadTXT"/>
+        <br />
+    <input type="submit" value="uploadTowerTXT"/>
+</form>
+
+</div>
+
+    <script>
+    function check(form) {
+        if(form.project.value=="") {
+            alert("请输入目录名！");
+            form.project.focus();
+            return false;
+        }
+        return true;
+    }
+    </script>
+
+</body>
+</html>

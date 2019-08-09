@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面标题</title>
+</head>
+<body>
+
+<div>
+    <span id="resp1">
+        no response
+    </span>
+</div>
+
+<script>
+    var data_dict = {'aaa':'bbb'}
+    send_data(data_dict);
+    // 定义发送请求的函数（内含如何处理响应）
+    function send_data(data_dict) {
+        var XHR = new XMLHttpRequest();
+        result = {};
+
+        //转换data_dict，实际使用时发现不用result转换data_dict直接转载data_dict发送json请求的话可能会报错
+        for (k in data_dict){
+            result[k] = data_dict[k]
+        }
+        //装载result
+        var pay_load = {"new_result": result};
+        // 配置请求
+        XHR.open('POST', 'modify');
+        // HTTP头
+        XHR.setRequestHeader('content-type', 'application/json');  //先open再设置请求头
+        // 发送请求
+        XHR.send(JSON.stringify(pay_load));
+
+        //定义接收到响应后的处理：每当 readyState 改变时，就会触发 onreadystatechange 事件
+        XHR.onreadystatechange = function(){
+              //若响应完成且请求成功
+              if(XHR.readyState === 4 && XHR.status === 200){
+                  document.getElementById("resp1").innerHTML=XHR.responseText; //成功收到响应后，替换当前的'no response'，显示为响应返回的'OK'
+              }
+        };
+    }
+</script>
+</body>
+</html>
